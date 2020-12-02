@@ -59,7 +59,7 @@
             <id>savincloud</id>
             <properties>
                 <build.profile.id>savincloud</build.profile.id>
-                <rp.build.warname>savincloud-atalayas</rp.build.warname>
+                <rp.build.warname>savincloud-atalayas2</rp.build.warname>
             </properties>
         </profile>
         <profile>
