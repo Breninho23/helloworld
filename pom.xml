@@ -9,6 +9,68 @@
     <packaging>war</packaging>
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
+    
+    <profiles>
+        <profile>
+            <id>desenvolvimento_breno</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            
+            <properties>
+                <build.profile.id>desenvolvimento_breno</build.profile.id>
+                <rp.build.warname>dev-atalayas</rp.build.warname>
+            </properties>
+        </profile>
+        <profile>
+            <id>desenvolvimento_roberto</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            
+            <properties>
+                <build.profile.id>desenvolvimento_roberto</build.profile.id>
+                <rp.build.warname>dev-atalayas</rp.build.warname>
+            </properties>
+        </profile>
+        <profile>
+            <id>desenvolvimento_thiago</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            
+            <properties>
+                <build.profile.id>desenvolvimento_thiago</build.profile.id>
+                <rp.build.warname>dev-atalayas</rp.build.warname>
+            </properties>
+        </profile>
+        <profile>
+            <id>desenvolvimento_gabriel</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            
+            <properties>
+                <build.profile.id>desenvolvimento_gabriel</build.profile.id>
+                <rp.build.warname>dev-atalayas</rp.build.warname>
+            </properties>
+        </profile>           
+        <profile>
+            <id>savincloud</id>
+            <properties>
+                <build.profile.id>savincloud</build.profile.id>
+                <rp.build.warname>savincloud-atalayas</rp.build.warname>
+            </properties>
+        </profile>
+        <profile>
+            <id>edpazure</id>
+            <properties>
+                <build.profile.id>edpazure</build.profile.id>
+                <rp.build.warname>edpazure-atalayas</rp.build.warname>
+            </properties>
+        </profile>
+    </profiles>
+    
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -22,6 +84,45 @@
                     <environment>${TARGET_ENV}</environment>
                     <comment>test-plugin</comment>
                     <api_hoster>${JELASTIC_API_ENDPOINT}</api_hoster>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jrxml</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jasper</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>swf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ico</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>png</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>doc</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>docx</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <webResource>
+                            <directory>${basedir}/src/main/webapp</directory>
+                            <filtering>true</filtering>
+                        </webResource>
+                    </webResources>
+                    <archive>
+                        <manifestEntries>
+                            <versaoprojeto>${project.version}</versaoprojeto>
+                            <ultimousuario>${user.name}</ultimousuario>
+                            <versaobuild>${maven.build.timestamp}</versaobuild>
+                            <perfildebuild>${rp.build.warname}</perfildebuild>
+                        </manifestEntries>
+                    </archive>
+                    <warName>${rp.build.warname}</warName>
                 </configuration>
             </plugin>
         </plugins>
