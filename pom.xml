@@ -54,9 +54,12 @@
                 <build.profile.id>desenvolvimento_gabriel</build.profile.id>
                 <rp.build.warname>dev-atalayas</rp.build.warname>
             </properties>
-        </profile>           
+        </profile>    
         <profile>
             <id>savincloud</id>
+		 <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <build.profile.id>savincloud</build.profile.id>
                 <rp.build.warname>savincloud-atalayas2</rp.build.warname>
